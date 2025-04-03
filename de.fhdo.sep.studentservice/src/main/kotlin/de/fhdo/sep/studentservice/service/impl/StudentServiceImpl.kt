@@ -1,5 +1,6 @@
 package de.fhdo.sep.studentservice.service.impl
 
+import de.fhdo.sep.studentservice.client.ExamClient
 import de.fhdo.sep.studentservice.domain.Student
 import de.fhdo.sep.studentservice.repository.StudentRepositoryI
 import de.fhdo.sep.studentservice.service.StudentServiceI
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service
 class StudentServiceImpl : StudentServiceI {
     @Autowired
     lateinit var studentRepository: StudentRepositoryI
+
+    @Autowired
+    lateinit var examClient: ExamClient
 
     override fun create(student: Student): Student {
         return studentRepository.save(student)
@@ -31,5 +35,9 @@ class StudentServiceImpl : StudentServiceI {
 
     override fun realAllStudents(): List<Student> {
         return studentRepository.findAll().toList()
+    }
+
+    override fun getExamsForStudent(studentId: Long): List<String> {
+        return  examClient.getExamsForStudent(studentId)
     }
 }

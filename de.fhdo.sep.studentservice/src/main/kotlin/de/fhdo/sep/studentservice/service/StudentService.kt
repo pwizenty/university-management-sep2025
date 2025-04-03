@@ -8,4 +8,5 @@ interface StudentServiceI {
     fun update(student: Student): Student
     fun delete(id: Long)
     fun realAllStudents(): List<Student>
+    fun getExamsForStudent(studentId: Long): List<String>
 }

@@ -42,4 +42,9 @@ class StudentController {
     fun deleteStudent(@PathVariable id: Long) {
         return studentService.delete(id)
     }
+
+    @GetMapping(path = ["/{id}/exams"])
+    fun getExamsForStudent(@PathVariable id: Long): List<String> {
+        return studentService.getExamsForStudent(id)
+    }
 }
